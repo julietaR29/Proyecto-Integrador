@@ -1,11 +1,10 @@
-# include<iostream>
+#include <iostream>
+#include "console_utils.h"
 #include "menu.h"
 #include "juego.h"
 #include "estadisticas.h"
 #include "rlutil.h"
 using namespace std;
-
-
 
 int OpcionesDeMenu(){
 
@@ -19,8 +18,6 @@ cout << "| |___ | |\\  || |    | |\\ \\ | |___ | |\\  |  | |  | | | || |/ / \\ \
 cout << "\\____/ |_| \\_/\\_|    \\_| \\_|\\____/ |_| \\_/  \\_/  \\_| |_/|___/   \\___/ \\____/ " << endl;
 cout << endl << endl << endl;
 
-
-
 cout << " +--------------------------------+" << endl;
 cout << " |          MENU PRINCIPAL        |" << endl;
 cout << " +--------------------------------+" << endl;
@@ -31,40 +28,29 @@ cout << " | [0] Salir                      |" << endl;
 cout << " +--------------------------------+" << endl;
 cout << " Ingrese una opcion: ";
 
-
-cin >> opcion;
-while(opcion <0 || opcion >3){
-    cout << "Opcion incorrecta"<<endl;
-    cout << "Opcion: ";
-    cin >> opcion;
-}
+opcion = leerEnteroEnRango(0, 3, "Opcion incorrecta");
 return opcion;
 }
 
-
-void ejecutarOpcionDeMenu(int opcion, string &ganador,int &puntajeganador){
+void ejecutarOpcionDeMenu(int opcion, EstadisticasSesion &estadisticasSesion){
 
 switch(opcion)
 {
 case 1:
 
-    system ("cls");
-    MainJuego(ganador,puntajeganador);
+    limpiarPantalla();
+    MainJuego(estadisticasSesion);
     break;
-
-
 
 case 2:
-    system ("cls");
-    estadisticas(ganador,puntajeganador);
+    limpiarPantalla();
+    estadisticas(estadisticasSesion);
     break;
-
-
 
 case 3:
 
-    system ("cls");
-     cout << " _____ ______  _____ ______  _____  _____  _____  _____ \n";
+    limpiarPantalla();
+    cout << " _____ ______  _____ ______  _____  _____  _____  _____ \n";
     cout << "/  __ \\| ___ \\|  ___||  _  \\|_   _||_   _||  _  |/  ___|\n";
     cout << "| /  \\/| |_/ /| |__  | | | |  | |    | |  | | | |\\ `--. \n";
     cout << "| |    |    / |  __| | | | |  | |    | |  | | | | `--. \\\n";
@@ -73,24 +59,17 @@ case 3:
     cout << "                                                        \n";
     cout << "                                                        \n";
 
-
-
-
     cout << "================= INFORMACION DEL GRUPO =================" << endl;
     cout << " " << endl;
     cout << "[ Grupo 11 ] " << endl;
     cout << " " << endl;
     cout << "[ Leandro Serrano ]" << endl;
-    cout << "  Legajo:            [ 33.111 ]" << endl;
     cout << " " << endl;
     cout << "[ Julieta Rodriguez ]" << endl;
-    cout << "  Legajo:            [ 32.487 ]" << endl;
     cout << " " << endl;
-    cout << "[ Mat¡as Candia Butvilofsky ]" << endl;
-    cout << "  Legajo:            [ 32.699 ]" << endl;
+    cout << "[ Matias Candia Butvilofsky ]" << endl;
     cout << " " << endl;
-    cout << "[ Fernando Raul Monz¢n ] " << endl;
-    cout << "  Legajo:            [ 32.519 ] " << endl;;
+    cout << "[ Fernando Raul Monzon ] " << endl;
     cout << " " << endl;
     cout << "=========================================================" << endl;
     break;
@@ -100,5 +79,3 @@ case 0:
     }
 
 }
-
-

@@ -1,37 +1,51 @@
 #include <iostream>
-#include "menu.h"
 #include "estadisticas.h"
-#include "juego.h"
 #include "funciones.h"
 
 using namespace std;
 
-void estadisticas (string& ganador, int& puntajeganador) {
-    if (puntajeganador == 0) {
-        mostrarBannerEstadisticas();
+void registrarResultado(EstadisticasSesion &estadisticasSesion, const string &ganador, int puntajeGanador) {
+    estadisticasSesion.partidasJugadas++;
+    estadisticasSesion.ultimaPartidaEmpatada = puntajeGanador == -1;
 
-        cout << "================= ESTADISTICAS ACTUALES =================" << endl << endl;
+    if (estadisticasSesion.ultimaPartidaEmpatada) {
+        estadisticasSesion.ultimoGanador = "";
+        estadisticasSesion.ultimoPuntajeGanador = 0;
+        return;
+    }
 
+    estadisticasSesion.ultimoGanador = ganador;
+    estadisticasSesion.ultimoPuntajeGanador = puntajeGanador;
+
+    if (puntajeGanador > estadisticasSesion.mejorPuntaje) {
+        estadisticasSesion.mejorJugador = ganador;
+        estadisticasSesion.mejorPuntaje = puntajeGanador;
+    }
+}
+
+void estadisticas(const EstadisticasSesion &estadisticasSesion) {
+    mostrarBannerEstadisticas();
+    cout << "================= ESTADISTICAS ACTUALES =================" << endl << endl;
+
+    if (estadisticasSesion.partidasJugadas == 0) {
         cout << "Aun no hay registros de partidas jugadas." << endl << endl;
-
-        cout << "=========================================================" << endl;
     }
-
-    else if (puntajeganador != -1) {
-        mostrarBannerEstadisticas();
-        cout << "================= ESTADISTICAS ACTUALES =================" << endl << endl;
-        cout << "El jugador con el mayor puntaje fue: " << ganador << endl;
-        cout << "Obtuvo un puntaje de: " << puntajeganador << " puntos" << endl << endl;
-        cout << "=========================================================" << endl;
-
-    }
-
     else {
-        mostrarBannerEstadisticas();
-        cout << "================= ESTADISTICAS ACTUALES =================" << endl << endl;
+        cout << "Partidas jugadas: " << estadisticasSesion.partidasJugadas << endl;
 
-        cout << "La ultima partida termino en empate entre ambos jugadores." << endl << endl;
-        cout << "=========================================================" << endl;
+        if (estadisticasSesion.ultimaPartidaEmpatada) {
+            cout << "Ultimo resultado: empate" << endl;
+        }
+        else {
+            cout << "Ultimo ganador: " << estadisticasSesion.ultimoGanador << endl;
+            cout << "Puntaje del ultimo ganador: " << estadisticasSesion.ultimoPuntajeGanador << endl;
+        }
 
+        if (estadisticasSesion.mejorPuntaje > 0) {
+            cout << "Mejor puntaje: " << estadisticasSesion.mejorPuntaje << " puntos" << endl;
+            cout << "Jugador con mejor puntaje: " << estadisticasSesion.mejorJugador << endl;
+        }
     }
+
+    cout << endl << "=========================================================" << endl;
 }

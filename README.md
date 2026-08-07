@@ -13,7 +13,7 @@ Este repositorio contiene una version adaptada del trabajo original grupal, orga
 - Puntaje calculado segun objetivo y cantidad de dados usados.
 - Victoria automatica si un jugador se queda sin dados.
 - Menu interactivo en consola.
-- Estadisticas de la mejor partida de la sesion.
+- Estadisticas de la sesion: partidas jugadas, ultimo resultado y mejor puntaje.
 
 ## Tecnologias
 
@@ -29,7 +29,7 @@ Este repositorio contiene una version adaptada del trabajo original grupal, orga
 - `juego.cpp` / `juego.h`: flujo principal de la partida.
 - `Funciones.cpp` / `Funciones.h`: funciones auxiliares del juego.
 - `dados.cpp` / `dados.h`: dibujo de dados en consola.
-- `estadisticas.cpp` / `estadisticas.h`: pantalla de estadisticas.
+- `estadisticas.cpp` / `estadisticas.h`: estado y pantalla de estadisticas de sesion.
 - `console_utils.cpp` / `console_utils.h`: utilidades de entrada y consola.
 - `rlutil.h`: biblioteca externa incluida en el proyecto.
 

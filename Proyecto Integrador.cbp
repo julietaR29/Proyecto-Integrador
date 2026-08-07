@@ -34,6 +34,8 @@
 		</Compiler>
 		<Unit filename="Funciones.cpp" />
 		<Unit filename="Funciones.h" />
+		<Unit filename="console_utils.cpp" />
+		<Unit filename="console_utils.h" />
 		<Unit filename="dados.cpp" />
 		<Unit filename="dados.h" />
 		<Unit filename="estadisticas.cpp" />

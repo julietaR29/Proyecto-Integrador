@@ -1,4 +1,5 @@
 #include <iostream>
+#include "console_utils.h"
 #include "rlutil.h"
 #include "dados.h"
 using namespace std;
@@ -89,7 +90,7 @@ int SumarTirada(int v[], int cant, int& DadosSeleccionados) {
     bool usados[12] = {false};
 
     while (true){
-        cin >> eleccion;
+        eleccion = leerEntero("Ingrese un numero valido");
         if (eleccion == 0){
             break;
         }

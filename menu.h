@@ -1,7 +1,9 @@
 #pragma once
-//using namespace std;
+#include <string>
+#include "estadisticas.h"
+
 int OpcionesDeMenu();
 
-void ejecutarOpcionDeMenu(int opcion,std::string &ganador,int &puntajejugador);
+void ejecutarOpcionDeMenu(int opcion, EstadisticasSesion &estadisticasSesion);
 
 

@@ -1,5 +1,14 @@
 #pragma once
+#include <string>
 
-///using namespace std;
+struct EstadisticasSesion {
+    int partidasJugadas = 0;
+    std::string ultimoGanador;
+    int ultimoPuntajeGanador = 0;
+    bool ultimaPartidaEmpatada = false;
+    std::string mejorJugador;
+    int mejorPuntaje = 0;
+};
 
-void estadisticas (std::string &ganador,int &puntajeganador);
+void registrarResultado(EstadisticasSesion &estadisticasSesion, const std::string &ganador, int puntajeGanador);
+void estadisticas(const EstadisticasSesion &estadisticasSesion);

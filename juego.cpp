@@ -1,7 +1,8 @@
 #include <iostream>
 #include <cstdlib>
-#include <cstdio>
 #include <ctime>
+#include <limits>
+#include "console_utils.h"
 #include "menu.h"
 #include "funciones.h"
 #include "rlutil.h"
@@ -9,8 +10,8 @@ using namespace std;
 
 bool jugarTurno(string nombreJugador, int& stockJugador, int& stockOponente, int& puntajeJugador, int ronda) {
 
-    system ("pause");
-    system ("cls");
+    pausarConsola();
+    limpiarPantalla();
     int dados[12];
     int numeroObjetivo=0;
     int suma = 0;
@@ -39,7 +40,7 @@ bool jugarTurno(string nombreJugador, int& stockJugador, int& stockOponente, int
         cout << "Transfieres " << dadosUsados << " dados al oponente." << endl;
 
             if (stockJugador == 0) {
-                system ("cls");
+                limpiarPantalla();
                 cout << "El jugador " << nombreJugador << " se quedo sin dados y gana automaticamente la partida!" << endl;
                 puntajeJugador += 10000;
                 return true;
@@ -62,18 +63,20 @@ bool jugarTurno(string nombreJugador, int& stockJugador, int& stockOponente, int
 }
 
 
-int MainJuego(string &ganador, int &puntajeganador) {
+int MainJuego(EstadisticasSesion &estadisticasSesion) {
 
     int turno;
     int contadorRondas = 1;
     string nombreJ1, nombreJ2;
+    string ganador;
     int stockJ1 = 6, stockJ2 = 6;
     int puntajeJ1 = 0, puntajeJ2 = 0;
+    int puntajeGanador = 0;
     bool victoriaAutomatica = false;
 
 
     cout << endl << "Introduzca el nombre del jugador 1: ";
-    cin.ignore();
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
     getline(cin, nombreJ1);
     cout << endl << "Introduzca el nombre del jugador 2: ";
     getline(cin, nombreJ2);
@@ -108,12 +111,13 @@ int MainJuego(string &ganador, int &puntajeganador) {
         contadorRondas++;
     }
 
-    system ("pause");
-    system ("cls");
+    pausarConsola();
+    limpiarPantalla();
 
-    jugadorGanador(nombreJ1, nombreJ2, puntajeJ1, puntajeJ2, ganador, puntajeganador);
+    jugadorGanador(nombreJ1, nombreJ2, puntajeJ1, puntajeJ2, ganador, puntajeGanador);
+    registrarResultado(estadisticasSesion, ganador, puntajeGanador);
     rlutil::hidecursor();
-    titilar(ganador,52,15,puntajeganador);
+    titilar(ganador,52,15,puntajeGanador);
     cout << endl;
     return 0;
 }
